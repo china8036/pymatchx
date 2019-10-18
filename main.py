@@ -8,7 +8,7 @@ img = pyautogui.screenshot() # x,y,w,h
 #target = cv2.imread("target.png")
 target = cv2.cvtColor(np.asarray(img),cv2.COLOR_RGB2BGR)
 
-template = cv2.imread("template.png")
+template = cv2.imread("isp.png")
 
 theight, twidth = template.shape[:2]
 
@@ -20,8 +20,15 @@ min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(result)
 
 strmin_val = str(min_val)
 
-cv2.rectangle(target,min_loc,(min_loc[0]+twidth,min_loc[1]+theight),(0,0,225),2)
+click_x = int(min_loc[0] + (twidth / 2))
+click_y = int(min_loc[1]+(theight / 2))
 
-cv2.imshow("MatchResult----MatchingValue="+strmin_val,target)
-cv2.waitKey()
-cv2.destroyAllWindows()
+pyautogui.doubleClick(click_x, click_y, button='left')
+
+#pyautogui.moveTo(click_x, click_y, duration=0.25)
+
+#cv2.rectangle(target,min_loc,(min_loc[0]+twidth,min_loc[1]+theight),(0,0,225),2)
+
+#cv2.imshow("MatchResult----MatchingValue="+strmin_val,target)
+#cv2.waitKey()
+#cv2.destroyAllWindows()
